@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1661209260 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"raylib.h"
+
+1661209400 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\imprime-mapa.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"raylib.h"
+
+1661285814 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"raylib.h"
+
