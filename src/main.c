@@ -6,7 +6,7 @@
 #define ALTURA 660
 #define LARGURA 640
 #define TAM_FONTE 20
-#define MAPA_L 11
+#define MAPA_L 10
 #define MAPA_C 11
 #define LARGURA_ICONE 30
 #define TAM_STRING 10
@@ -88,6 +88,7 @@ int main() {
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
                 desenhaBarra(pontuacao, 1, vidas);
+                desenhaMapa(mapa);
                 EndDrawing();
 
                 break;
@@ -104,49 +105,62 @@ int main() {
 }
 
 void desenhaMapa(char mapa[MAPA_L][MAPA_C]){
-    //int i, j;
-    //int x = 10;
-    //int y = 10;
-    /*
-    Texture2D aux;
+    int i, j, x, y;
+    x = TAM_FONTE;
 
+    Texture2D aux;
     Texture2D bau = LoadTexture("./assets/bau.png");
     Texture2D escada = LoadTexture("./assets/escada.png");
     Texture2D parede = LoadTexture("./assets/parede.png");
     Texture2D porta = LoadTexture("./assets/porta.png");
     Texture2D personagem = LoadTexture("./assets/emoji.png");
-    Texture2D quadrado = LoadTexture("./assets/quadrado.png");*/
+    Texture2D quadrado = LoadTexture("./assets/quadrado.png");
 
-    /*
+
     for (i = 0; i < MAPA_L; i++){
+        y = 10;
         for (j = 0; j< MAPA_C; j++){
-            switch(mapa[i][j]){
-                case 'H':
-                    aux = escada;
-                    break;
-                case 'D':
-                    aux = personagem;
-                    break;
-                case 'X':
-                    aux = parede;
-                    break;
-                case 'C':
-                    aux = bau;
-                    break;
-                case ' ':
-                    aux = quadrado;
-                default:
-                    aux = porta;
+/*
+            if (i == 0 || i == MAPA_L || j == 0 || j == MAPA_C){
+                if (i == MAPA_L)
+                    y = i * LARGURA_ICONE; //PROBLEMA AQUI
+
+            }*/
+
+            //else{
+
+                switch(mapa[i][j]){
+                    case 'H':
+                        aux = escada;
+                        break;
+                    case 'D':
+                        aux = personagem;
+                        break;
+                    case 'X':
+                        aux = quadrado;
+                        break;
+                    case 'C':
+                        aux = bau;
+                        break;
+                    case ' ':
+                        y += LARGURA_ICONE;
+                        break;
+                    default:
+                        aux = porta;
+                    }
+                printf("%c ", mapa[i][j]);
+                if (mapa[i][j] != ' '){
+                    DrawTexture(aux, x, y, WHITE);
+                    y += LARGURA_ICONE;
                 }
-            printf("%c ", mapa[i][j]);
-            DrawTexture(aux, x, y, BLACK);
-            y += LARGURA_ICONE;
+
+            //}
         }
         x += LARGURA_ICONE;
         y = 10;
         printf("\n");
     }
-    */
+
     //DrawTexture(parede, x, y, BLACK);
 }
 
