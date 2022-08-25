@@ -2,21 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "raylib.h"
+#include "mapa.h"
 
 #define ALTURA 660
 #define LARGURA 640
-#define TAM_FONTE 20
 #define MAPA_L 10
 #define MAPA_C 10
-#define LARGURA_ICONE LARGURA/MAPA_L
-#define TAM_STRING 10
 #define OPCOES 4
 #define TAM 20
 #define POSY 100
 
 void desenhaMenu(int selecionada);
-void desenhaMapa(char mapa[MAPA_L][MAPA_C]);
-void desenhaBarra(int pontos, int nivel, int vida);
 
 int main() {
 
@@ -104,79 +100,6 @@ int main() {
     return 0;
 }
 
-void desenhaMapa(char mapa[MAPA_L][MAPA_C]){
-    int i, j, x, y;
-    x = 10;
-    y = TAM_FONTE + 20;
-
-
-    Texture2D aux;
-    Texture2D bau = LoadTexture("./assets/bau.png");
-    Texture2D escada = LoadTexture("./assets/escada.png");
-    Texture2D parede = LoadTexture("./assets/parede.png");
-    Texture2D porta = LoadTexture("./assets/porta.png");
-    Texture2D personagem = LoadTexture("./assets/personagem.png");
-    Texture2D quadrado = LoadTexture("./assets/quadrado.png");
-
-
-    for (i = 0; i < MAPA_L; i++){
-
-        for (j = 0; j< MAPA_C; j++){
-
-            if (i == 0){
-                DrawTexture(parede, x, y, WHITE);
-                x += LARGURA_ICONE;
-            }
-            else if (i == MAPA_L - 1){
-                DrawTexture(parede, x, y, WHITE);
-                x += LARGURA_ICONE;
-            }
-            else if (j == 0){
-                DrawTexture(parede, x, y, WHITE);
-                x += LARGURA_ICONE;
-            }
-            else if (j == MAPA_C - 1){
-                DrawTexture(parede, x, y, WHITE);
-                x += LARGURA_ICONE;
-            }
-
-            else{
-
-                switch(mapa[i][j]){
-                    case 'H':
-                        aux = escada;
-                        break;
-                    case 'D':
-                        aux = personagem;
-                        break;
-                    case 'X':
-                        aux = quadrado;
-                        break;
-                    case 'C':
-                        aux = bau;
-                        break;
-                    case ' ':
-                        x += LARGURA_ICONE;
-                        break;
-                    default:
-                        aux = porta;
-                    }
-                printf("%c ", mapa[i][j]);
-                if (mapa[i][j] != ' '){
-                    DrawTexture(aux, x, y, WHITE);
-                    x += LARGURA_ICONE;
-                }
-
-            }
-        }
-        x = 10;
-        y += LARGURA_ICONE;
-        printf("\n");
-    }
-
-    //DrawTexture(parede, x, y, BLACK);
-}
-
 
 void desenhaMenu(int selecionada){
     char texto[OPCOES][TAM] = {"Novo Jogo", "Carregar Jogo", "[Ranking Pontos]", "Sair"}; //Declaração do texto do menu
@@ -191,40 +114,5 @@ void desenhaMenu(int selecionada){
             DrawText(texto[i], (LARGURA / 2) - (MeasureText(texto[i], TAM_FONTE) / 2), c * POSY, TAM_FONTE, GREEN); //Desenha o texto em verde
         }
         c++; //Aumenta uma posição em y
-    }
-}
-
-void desenhaBarra(int pontos, int nivel, int vida){
-    //char pontuacao[TAM_STRING], fase[TAM_STRING], vida[TAM_STRING];
-    int i, posx, posy;
-    int vetor_fase[1];
-    char vetor_pontos[15];
-    posx = 10;
-    posy = 5;
-    Image heart = LoadImage("./assets/heart.png");
-    ImageResize(&heart, TAM_FONTE, TAM_FONTE);
-    Texture2D coracao = LoadTextureFromImage(heart);
-    UnloadImage(heart);
-
-    DrawText("SCORE: ", posx, posy, TAM_FONTE, BLACK);
-    posx +=  MeasureText("SCORE: ", TAM_FONTE) + 15;
-
-    sprintf(vetor_pontos, "%4d PONTOS", pontos);
-    DrawText(vetor_pontos, posx, posy, TAM_FONTE, BLACK);
-    posx +=  MeasureText("9999 PONTOS", TAM_FONTE) + 15;
-
-    DrawText("NIVEL: ", posx, posy, TAM_FONTE, BLACK);
-    posx +=  MeasureText("NIVEL: ", TAM_FONTE) + 15;
-
-    sprintf(vetor_fase, "%1d", nivel);
-    DrawText(vetor_fase, posx, posy, TAM_FONTE, BLACK);
-    posx +=  MeasureText("99", TAM_FONTE) + 15;
-
-
-    DrawText("VIDAS: ", posx, posy, TAM_FONTE, BLACK);
-    posx +=  MeasureText("VIDAS: ", TAM_FONTE) + 15;
-    for (i = 0; i < 3; i++){
-        DrawTexture(coracao, posx, posy, WHITE);
-        posx +=  TAM_FONTE;
     }
 }

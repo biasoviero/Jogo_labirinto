@@ -11,9 +11,16 @@
 	<string.h>
 	"raylib.h"
 
-1661368854 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\main.c
+1661372744 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
+	"raylib.h"
+	"mapa.h"
+
+1661380618 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\mapa.c
+	"mapa.h"
+
+1661372638 c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\mapa.h
 	"raylib.h"
 
