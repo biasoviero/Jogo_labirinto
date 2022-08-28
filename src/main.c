@@ -3,11 +3,12 @@
 #include <string.h>
 #include "raylib.h"
 #include "mapa.h"
+#include "movimentos.h"
 
 #define ALTURA 660
 #define LARGURA 640
-#define MAPA_L 10
-#define MAPA_C 10
+#define MAPA_L 30
+#define MAPA_C 120
 #define OPCOES 4
 #define TAM 20
 #define POSY 100
@@ -16,24 +17,13 @@ void desenhaMenu(int selecionada);
 
 int main() {
 
-    char mapa[MAPA_L][MAPA_C];
     int opcao = 0; // Inicializa a opção como 0
     int pontuacao, vidas;
+    struct Mapa fase_atual;
     pontuacao = 0;
     vidas = 3;
-    //int e, l, c; //escada, linhas, colunas
 
-    strcpy(mapa[0], "XXXXXXXXXX");
-    strcpy(mapa[1], "X1 C  C2 X");
-    strcpy(mapa[2], "XXHX  XX X");
-    strcpy(mapa[3], "XCH    1 X");
-    strcpy(mapa[4], "XXX HXHX X");
-    strcpy(mapa[5], "X   H H  X");
-    strcpy(mapa[6], "X   D HC2X");
-    strcpy(mapa[7], "X HXX XXXX");
-    strcpy(mapa[8], "X H X   PX");
-    strcpy(mapa[9], "XXXXXXXXXX");
-
+    carregaMapa(&fase_atual);
 
     InitWindow(LARGURA, ALTURA, "Labirinto");
 
@@ -84,7 +74,19 @@ int main() {
                 BeginDrawing();
                 ClearBackground(RAYWHITE);
                 desenhaBarra(pontuacao, 1, vidas);
-                desenhaMapa(mapa);
+                desenhaMapa(fase_atual);
+                if (IsKeyPressed(KEY_RIGHT)){
+                    movimento_horizontal(&fase_atual, 1);
+                }
+                else if (IsKeyPressed(KEY_LEFT)){
+                    movimento_horizontal(&fase_atual, -1);
+                }
+                else if (IsKeyPressed(KEY_UP)){
+                    movimento_vertical(&fase_atual, -1);
+                }
+                else if (IsKeyPressed(KEY_DOWN)){
+                    movimento_vertical(&fase_atual, 1);
+                }
                 EndDrawing();
 
                 break;

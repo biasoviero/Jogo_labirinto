@@ -1,9 +1,12 @@
 #include "mapa.h"
+#include <stdio.h>
+#include <string.h>
 
-void desenhaMapa(char mapa[MAPA_L][MAPA_C]){
-    int i, j, x, y;
+void desenhaMapa(struct Mapa fase){
+    int i, j, x, y, larguraIcone;
     x = 10;
     y = TAM_FONTE + 20;
+    larguraIcone = LARGURA / fase.linhas;
 
 
     Texture2D aux;
@@ -15,18 +18,15 @@ void desenhaMapa(char mapa[MAPA_L][MAPA_C]){
     Texture2D quadrado = LoadTexture("./assets/quadrado.png");
 
 
-    for (i = 0; i < MAPA_L; i++){
-
-        for (j = 0; j< MAPA_C; j++){
-
-            if (i == 0 || i == MAPA_L - 1 || j == 0 || j == MAPA_C - 1){
+    for (i = 0; i < fase.linhas; i++){
+        for (j = 0; j < fase.colunas; j++){
+            if (i == 0 || i == fase.linhas - 1 || j == 0 || j == fase.colunas - 1){
                 DrawTexture(parede, x, y, WHITE);
-                x += LARGURA_ICONE;
+                x += larguraIcone;
             }
 
             else{
-
-                switch(mapa[i][j]){
+                switch(fase.mapa[i][j]){
                     case 'H':
                         aux = escada;
                         break;
@@ -40,29 +40,26 @@ void desenhaMapa(char mapa[MAPA_L][MAPA_C]){
                         aux = bau;
                         break;
                     case ' ':
-                        x += LARGURA_ICONE;
+                        x += larguraIcone;
                         break;
                     default:
                         aux = porta;
                     }
-                printf("%c ", mapa[i][j]);
-                if (mapa[i][j] != ' '){
+                if (fase.mapa[i][j] != ' '){
                     DrawTexture(aux, x, y, WHITE);
-                    x += LARGURA_ICONE;
+                    x += larguraIcone;
                 }
-
             }
         }
         x = 10;
-        y += LARGURA_ICONE;
-        printf("\n");
+        y += larguraIcone;
     }
     return;
 }
 
-void desenhaBarra(int pontos, int nivel, int vida){
+void desenhaBarra(int pontos, int nivelAtual, int vida){
     int i, posx, posy;
-    int vetor_fase[1];
+    int vetor_fase[2];
     char vetor_pontos[15];
     posx = 10;
     posy = 5;
@@ -81,7 +78,7 @@ void desenhaBarra(int pontos, int nivel, int vida){
     DrawText("NIVEL: ", posx, posy, TAM_FONTE, BLACK);
     posx +=  MeasureText("NIVEL: ", TAM_FONTE) + 15;
 
-    sprintf(vetor_fase, "%1d", nivel);
+    sprintf(vetor_fase, "%1d", nivelAtual);
     DrawText(vetor_fase, posx, posy, TAM_FONTE, BLACK);
     posx +=  MeasureText("99", TAM_FONTE) + 15;
 
@@ -92,5 +89,38 @@ void desenhaBarra(int pontos, int nivel, int vida){
         DrawTexture(coracao, posx, posy, WHITE);
         posx +=  TAM_FONTE;
     }
+    return;
+}
+
+void carregaMapa(struct Mapa *fase){
+    char linha[MAPA_C], i;
+    int c;
+
+    FILE *nivel = fopen("./fases/fase_1.txt", "r"); //parâmetro 'r' para ler o arquivo
+
+    if(nivel == NULL){
+        printf("Nao foi possivel iniciar a fase");
+    }
+
+    fase->linhas = 0;
+
+    while (fgets(linha, sizeof(linha), nivel)){ //lê cada linha e armazena na variável
+        strcpy(fase->mapa[fase->linhas], linha);
+        fase->linhas++;
+    }
+
+    i = fase->mapa[0][0];
+    fase->colunas = 0;
+    c = 0;
+
+    while (i != '\0'){ //conta a quantidade de colunas
+        c++;
+        i = fase->mapa[0][c];
+        fase->colunas++;
+    }
+    fase->colunas--;
+    fase->porta = ' ';
+    fase->escada = 0;
+
     return;
 }
