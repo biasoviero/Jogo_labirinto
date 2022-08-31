@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void desenhaMapa(struct Mapa fase){
+void desenhaMapa(t_mapa fase){
     int i, j, x, y, larguraIcone;
     x = 10;
     y = TAM_FONTE + 20;
@@ -12,10 +12,11 @@ void desenhaMapa(struct Mapa fase){
     Texture2D aux;
     Texture2D bau = LoadTexture("./assets/bau.png");
     Texture2D escada = LoadTexture("./assets/escada.png");
-    Texture2D parede = LoadTexture("./assets/parede.png");
+    Texture2D parede = LoadTexture("./assets/chao2.png");
     Texture2D porta = LoadTexture("./assets/porta.png");
-    Texture2D personagem = LoadTexture("./assets/personagem.png");
-    Texture2D quadrado = LoadTexture("./assets/quadrado.png");
+    Texture2D personagem = LoadTexture("./assets/alienPink.png");
+    Texture2D quadrado = LoadTexture("./assets/chao.png");
+    Texture2D bandeira = LoadTexture("./assets/bandeira.png");
 
 
     for (i = 0; i < fase.linhas; i++){
@@ -41,6 +42,9 @@ void desenhaMapa(struct Mapa fase){
                         break;
                     case ' ':
                         x += larguraIcone;
+                        break;
+                    case 'P':
+                        aux = bandeira;
                         break;
                     default:
                         aux = porta;
@@ -92,7 +96,7 @@ void desenhaBarra(int pontos, int nivelAtual, int vida){
     return;
 }
 
-void carregaMapa(struct Mapa *fase){
+void carregaMapa(t_mapa *fase){
     char linha[MAPA_C], i;
     int c;
 
@@ -120,7 +124,7 @@ void carregaMapa(struct Mapa *fase){
     }
     fase->colunas--;
     fase->porta = ' ';
-    fase->escada = 0;
+    fase->escada = 1;
 
     return;
 }

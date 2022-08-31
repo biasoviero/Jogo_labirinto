@@ -19,7 +19,7 @@ int main() {
 
     int opcao = 0; // Inicializa a opção como 0
     int pontuacao, vidas;
-    struct Mapa fase_atual;
+    t_mapa fase_atual;
     pontuacao = 0;
     vidas = 3;
 
@@ -72,7 +72,7 @@ int main() {
             switch (opcao) { //Entra na opcao do menu selecionada
             case 0: //Se for 0, um jogo inicia
                 BeginDrawing();
-                ClearBackground(RAYWHITE);
+                ClearBackground(BLUE);
                 desenhaBarra(pontuacao, 1, vidas);
                 desenhaMapa(fase_atual);
                 if (IsKeyPressed(KEY_RIGHT)){
