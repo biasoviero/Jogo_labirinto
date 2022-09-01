@@ -11,22 +11,23 @@ void desenhaMapa(t_mapa fase){
 
     Texture2D aux;
     Texture2D bau = LoadTexture("./assets/bau.png");
-    Texture2D escada = LoadTexture("./assets/escada.png");
-    Texture2D parede = LoadTexture("./assets/chao2.png");
+    Texture2D escada = LoadTexture("./assets/nuvem.png");
+    Texture2D parede = LoadTexture("./assets/arco-iris.png");
     Texture2D porta = LoadTexture("./assets/porta.png");
-    Texture2D personagem = LoadTexture("./assets/alienPink.png");
-    Texture2D quadrado = LoadTexture("./assets/chao.png");
+    Texture2D personagem = LoadTexture("./assets/personagem.png");
+    Texture2D quadrado = LoadTexture("./assets/arco-iris.png");
     Texture2D bandeira = LoadTexture("./assets/bandeira.png");
 
 
     for (i = 0; i < fase.linhas; i++){
         for (j = 0; j < fase.colunas; j++){
-            if (i == 0 || i == fase.linhas - 1 || j == 0 || j == fase.colunas - 1){
+            if (i == fase.linhas - 1){
                 DrawTexture(parede, x, y, WHITE);
                 x += larguraIcone;
-            }
+            } else if (i == 0 || j == 0 || j == fase.colunas - 1) {
+                x += larguraIcone;
 
-            else{
+            } else{
                 switch(fase.mapa[i][j]){
                     case 'H':
                         aux = escada;
