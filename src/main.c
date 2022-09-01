@@ -72,7 +72,7 @@ int main() {
             switch (opcao) { //Entra na opcao do menu selecionada
             case 0: //Se for 0, um jogo inicia
                 BeginDrawing();
-                ClearBackground(BLUE);
+                ClearBackground(SKYBLUE);
                 desenhaBarra(pontuacao, 1, vidas);
                 desenhaMapa(fase_atual);
                 if (IsKeyPressed(KEY_RIGHT)){
