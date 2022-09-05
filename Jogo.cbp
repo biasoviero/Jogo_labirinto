@@ -43,7 +43,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="src/mapa.h" />
-		<Unit filename="src/movimentacoes.h">
+		<Unit filename="src/movimentos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/movimentos.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Extensions />

@@ -1,9 +1,9 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "raylib.h"
 #include "mapa.h"
 #include "movimentos.h"
+#include "jogador.h"
 
 #define ALTURA 660
 #define LARGURA 640
@@ -18,12 +18,18 @@ void desenhaMenu(int selecionada);
 int main() {
 
     int opcao = 0; // Inicializa a opção como 0
-    int pontuacao, vidas;
-    struct Mapa fase_atual;
-    pontuacao = 0;
-    vidas = 3;
+    int x_jog, y_jog;
+    struct Jogador jogador1;
+    t_mapa fase_atual;
+    int msg = -1; //mensagem que aparecerá na barra de informações
 
     carregaMapa(&fase_atual);
+    sorteiaCaixa(&fase_atual);
+    for (int i =0; i < fase_atual.linhas ;i++){
+        printf("%s\n", fase_atual.mapa[i]);
+    }
+    localiza_jogador(fase_atual, &x_jog, &y_jog);
+    jogador1 = jog_inicializa(x_jog, y_jog);
 
     InitWindow(LARGURA, ALTURA, "Labirinto");
 
@@ -72,9 +78,9 @@ int main() {
             switch (opcao) { //Entra na opcao do menu selecionada
             case 0: //Se for 0, um jogo inicia
                 BeginDrawing();
-                ClearBackground(RAYWHITE);
-                desenhaBarra(pontuacao, 1, vidas);
-                desenhaMapa(fase_atual);
+                ClearBackground(SKYBLUE);
+                desenhaBarra(jogador1, 1, msg);
+                desenhaMapa(fase_atual, jogador1);
                 if (IsKeyPressed(KEY_RIGHT)){
                     movimento_horizontal(&fase_atual, 1);
                 }
@@ -104,13 +110,14 @@ int main() {
 
 
 void desenhaMenu(int selecionada){
-    char texto[OPCOES][TAM] = {"Novo Jogo", "Carregar Jogo", "[Ranking Pontos]", "Sair"}; //Declaração do texto do menu
+    char texto[OPCOES][TAM] = {"Novo Jogo", "Carregar Jogo", "Ranking Pontos", "Sair"}; //Declaração do texto do menu
     int i; // Contador
     int c = 1; //Contador para a posição y
 
     for(i = 0; i < OPCOES; i++){
         if(i == selecionada){ //Se o contador for a opção selecionada
-            DrawText(texto[i], (LARGURA / 2) - (MeasureText(texto[i], TAM_FONTE) / 2), c * POSY, TAM_FONTE, RED); //Deseenha o texto em vermelho
+            sprintf(texto[TAM], "[%s]", texto[i]);
+            DrawText(texto[TAM], (LARGURA / 2) - (MeasureText(texto[i], TAM_FONTE) / 2), c * POSY, TAM_FONTE, RED); //Deseenha o texto em vermelho
         }
         else { //Senão
             DrawText(texto[i], (LARGURA / 2) - (MeasureText(texto[i], TAM_FONTE) / 2), c * POSY, TAM_FONTE, GREEN); //Desenha o texto em verde
@@ -118,3 +125,4 @@ void desenhaMenu(int selecionada){
         c++; //Aumenta uma posição em y
     }
 }
+

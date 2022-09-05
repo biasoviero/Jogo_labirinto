@@ -11,26 +11,35 @@
 	<string.h>
 	"raylib.h"
 
-1661700457 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\main.c
-	<stdio.h>
+1662396205 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\main.c
 	<stdlib.h>
 	<string.h>
 	"raylib.h"
 	"mapa.h"
 	"movimentos.h"
+	"jogador.h"
 
-1661652989 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\mapa.c
+1662065658 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\mapa.c
 	"mapa.h"
 	<stdio.h>
 	<string.h>
 
-1661654173 c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\mapa.h
+1662396206 c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\mapa.h
 	"raylib.h"
+	"jogador.h"
+	<time.h>
+	<stdlib.h>
 
-1661699983 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\movimentos.c
+1662396205 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\movimentos.c
 	"movimentos.h"
 
-1661699972 c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\movimentos.h
+1662396205 c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\movimentos.h
 	"mapa.h"
+	"jogador.h"
 	<stdio.h>
+
+1662396205 source:c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\jogador.c
+	"jogador.h"
+
+1662396206 c:\users\eduardo soveiro\desktop\bia\ufrgs\semestre_1\algoritmos_e_programacao\jogo\src\jogador.h
 
