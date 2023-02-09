@@ -18,7 +18,6 @@ void movimento_vertical(t_mapa *fase, int direcao) {
 
     if (fase->caixa == 1 && direcao == 1) {
         printf("A caixa foi aberta!\n");
-        //algoritmo da caixa?
     }
 
 
@@ -46,13 +45,13 @@ void movimento_horizontal(t_mapa *fase, int direcao) {
     int x_jog, y_jog, x_porta, y_porta, i = 0;
     localiza_jogador(*fase, &x_jog, &y_jog);
 
-    //se o jogador for para uma posicao que nao tiver chao
+    //se o jogador for para uma posição que nao tiver chao
         if (fase->mapa[x_jog + 1][y_jog + direcao] == ' ') {
             while (fase->mapa[x_jog + i][y_jog + direcao] == ' ') {
                 i++;
             }
 
-            //possiveis casos da posicao atual do jogador
+            //possíveis casos da posição atual do jogador
             if (fase->escada == 1) {
                 fase->escada = 0;
                 fase->mapa[x_jog][y_jog] = 'H';
@@ -72,7 +71,7 @@ void movimento_horizontal(t_mapa *fase, int direcao) {
                 fase->mapa[x_jog][y_jog] = ' ';
             }
 
-            //possiveis casos do proximo movimento horizontal
+            //possíveis casos do próximo movimento horizontal
             switch (fase->mapa[x_jog + i][y_jog + direcao]) {
                 case 'H':
                     fase->escada = 1;
@@ -94,13 +93,13 @@ void movimento_horizontal(t_mapa *fase, int direcao) {
             }
             fase->mapa[x_jog + i][y_jog + direcao] = 'D';
 
-    //se o proximo passo for diferente de 'X'
+    //se o próximo passo for diferente de 'X'
     } else if (fase->mapa[x_jog][y_jog + direcao] != 'X') {
         //se o jogador estiver em uma escada
         if (fase->escada == 1) {
             fase->escada = 0;
 
-            //possiveis casos do proximo movimento horizontal
+            //possíveis casos do próximo movimento horizontal
             switch (fase->mapa[x_jog][y_jog + direcao]) {
                 case '1':
                     fase->porta = '1';
@@ -117,10 +116,10 @@ void movimento_horizontal(t_mapa *fase, int direcao) {
             }
             fase->mapa[x_jog][y_jog] = 'H';
             fase->mapa[x_jog][y_jog + direcao] = 'D';
-        //se o for para uma posicao que tem chao 'X' ou 'H'
+        //se o jogador for para uma posição que tem chão 'X' ou 'H'
         } else if (fase->mapa[x_jog + 1][y_jog + direcao] == 'X' || fase->mapa[x_jog + 1][y_jog + direcao] == 'H') {
 
-            //possiveis casos da posicao atual do jogador
+            //possíveis casos da posição atual do jogador
             if (fase->escada == 1) {
                 fase->escada = 0;
                 fase->mapa[x_jog][y_jog] = 'H';
@@ -140,7 +139,7 @@ void movimento_horizontal(t_mapa *fase, int direcao) {
                 fase->mapa[x_jog][y_jog] = ' ';
             }
 
-            //possiveis casos do proximo movimento horizontal
+            //possíveis casos do próximo movimento horizontal
             switch (fase->mapa[x_jog][y_jog + direcao]) {
                 case 'H':
                     fase->escada = 1;
